@@ -1,1 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Social Stats Dashboard</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: #0f172a;
+      color: white;
+      text-align: center;
+      padding: 50px;
+    }
+    .card {
+      background: #1e293b;
+      padding: 20px;
+      margin: 20px auto;
+      width: 300px;
+      border-radius: 10px;
+      font-size: 24px;
+    }
+  </style>
+</head>
+<body>
 
+  <h1>Mis estadísticas</h1>
+
+  <div class="card">
+    YouTube: <span id="yt">Cargando...</span>
+  </div>
+
+  <script>
+    fetch('/api/youtube')
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById('yt').innerText = data.subscribers || "Error";
+      })
+      .catch(() => {
+        document.getElementById('yt').innerText = "Error";
+      });
+  </script>
+
+</body>
+</html>
