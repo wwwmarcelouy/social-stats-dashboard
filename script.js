@@ -1,29 +1,12 @@
 const youtubeSubscribersElement = document.getElementById("youtubeSubscribers");
 
-async function loadYouTubeSubscribers() {
+function displayYouTubeSubscribers() {
   if (!youtubeSubscribersElement) return;
 
-  youtubeSubscribersElement.textContent = "Loading...";
+  // Ingresa el valor manualmente aquí.
+  const manualSubscriberCount = 0;
 
-  try {
-    const response = await fetch("/api/youtube");
-
-    if (!response.ok) {
-      throw new Error(`Request failed with status ${response.status}`);
-    }
-
-    const data = await response.json();
-    const count = data?.subscriberCount;
-
-    if (typeof count !== "number") {
-      throw new Error("Invalid subscriber count in API response");
-    }
-
-    youtubeSubscribersElement.textContent = count.toLocaleString();
-  } catch (error) {
-    console.error("Failed to load YouTube subscribers:", error);
-    youtubeSubscribersElement.textContent = "Unavailable";
-  }
+  youtubeSubscribersElement.textContent = manualSubscriberCount.toLocaleString();
 }
 
-loadYouTubeSubscribers();
+displayYouTubeSubscribers();
